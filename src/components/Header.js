@@ -22,7 +22,7 @@ const Header = () => {
   const onInputChange = (e) => {
     if (+e.target.value >= 1) {
       setEntries(e.target.value);
-      dispatch(updatePageLimit({ search, entries }));
+      dispatch(updatePageLimit({ search, entries: e.target.value }));
     }
   };
 

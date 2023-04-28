@@ -13,8 +13,6 @@ const Pagination = () => {
     if (+data.totalPage < 6 && +data.totalPage > 0) {
       let num = data.totalPage < 0 ? 1 : data.totalPage;
       setSlider([...new Array(num).keys()].map((item) => item + 1));
-    }else{
-        setSlider(arr);
     }
   }, [data]);
 

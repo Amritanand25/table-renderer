@@ -25,23 +25,23 @@ const paginationSlice = createSlice({
       //debugger;
       let currentData = current(state.currentData);
       
-      if (state.searchInput?.trim()) {
+      if (action.payload.search?.trim()) {
         state.currentData = searchByInput(
-          state.searchInput,
+          action.payload.search,
           current(state.currentData)
         );
       }
       
-      if (+state.pageLimit > 0) {
+      if (+action.payload.entries > 0) {
         if (currentData?.length > 0) {
           let len = currentData?.length;
-          let totalPage = Math.floor(len / state.pageLimit);
-          if (len % state.pageLimit > 0) totalPage = totalPage + 1;
+          let totalPage = Math.floor(len / action.payload.entries);
+          if (len % action.payload.entries > 0) totalPage = totalPage + 1;
           state.totalPage = totalPage;
           state.currentPage = 1;
           if (totalPage > 1) state.nextPage = 2;
           state.pageStart = 1;
-          state.pageEnd = state.pageLimit;
+          state.pageEnd = action.payload.entries;
           state.currentSlice = currentData.filter(
             (item, i) => i + 1 >= state.pageStart && i + 1 <= state.pageEnd
           );
